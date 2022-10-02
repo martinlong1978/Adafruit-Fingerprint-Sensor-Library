@@ -603,7 +603,7 @@ Adafruit_Fingerprint::getStructuredPacket(Adafruit_Fingerprint_Packet *packet,
       break;
     default:
       packet->data[idx - 9] = byte;
-      if ((idx - 8) == packet->length) {
+      if ((idx - 8) == (packet->length)) {
 #ifdef FINGERPRINT_DEBUG
         Serial.println(" OK ");
 #endif
@@ -612,7 +612,7 @@ Adafruit_Fingerprint::getStructuredPacket(Adafruit_Fingerprint_Packet *packet,
       break;
     }
     idx++;
-    if ((idx + 9) >= sizeof(packet->data)) {
+    if (idx > 9 && (idx - 9) > sizeof(packet->data)) {
       return FINGERPRINT_BADPACKET;
     }
   }
